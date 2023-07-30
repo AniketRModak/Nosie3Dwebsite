@@ -295,6 +295,6 @@ const hiddenELe = document.querySelectorAll(".hidden");
 hiddenELe.forEach((el) => observer.observe(el));
 const checkbtn = document.querySelector(".btnBuy");
 checkbtn.addEventListener("click", () => {
-	alert("ok");
+	alert("Pesa he kya");
 	console.log("hello");
 });
