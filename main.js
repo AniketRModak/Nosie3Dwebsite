@@ -2,23 +2,17 @@
 
 function loco() {
 	gsap.registerPlugin(ScrollTrigger);
-
-	// Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
-
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("#main"),
 		smooth: true,
 	});
-	// each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
 	locoScroll.on("scroll", ScrollTrigger.update);
-
-	// tell ScrollTrigger to use these proxy methods for the "#main" element since Locomotive Scroll is hijacking things
 	ScrollTrigger.scrollerProxy("#main", {
 		scrollTop(value) {
 			return arguments.length
 				? locoScroll.scrollTo(value, 0, 0)
 				: locoScroll.scroll.instance.scroll.y;
-		}, // we don't have to define a scrollLeft because we're only scrolling vertically.
+		},
 		getBoundingClientRect() {
 			return {
 				top: 0,
@@ -27,195 +21,182 @@ function loco() {
 				height: window.innerHeight,
 			};
 		},
-		// LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
 		pinType: document.querySelector("#main").style.transform
 			? "transform"
 			: "fixed",
 	});
-
-	// each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
 	ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-
-	// after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 	ScrollTrigger.refresh();
 }
 loco();
-
 function canvas() {
 	const canvas = document.querySelector("canvas");
 	const context = canvas.getContext("2d");
-
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
-
 	window.addEventListener("resize", function () {
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 		render();
 	});
-
 	function files(index) {
-		var data = ` ezgif-frame-001.png
-        ezgif-frame-002.png
-        ezgif-frame-003.png
-        ezgif-frame-004.png
-        ezgif-frame-005.png
-        ezgif-frame-006.png
-        ezgif-frame-007.png
-        ezgif-frame-008.png
-        ezgif-frame-009.png
-        ezgif-frame-010.png
-        ezgif-frame-011.png
-        ezgif-frame-012.png
-        ezgif-frame-013.png
-        ezgif-frame-014.png
-        ezgif-frame-015.png
-        ezgif-frame-016.png
-        ezgif-frame-017.png
-        ezgif-frame-018.png
-        ezgif-frame-019.png
-        ezgif-frame-020.png
-        ezgif-frame-021.png
-        ezgif-frame-022.png
-        ezgif-frame-023.png
-        ezgif-frame-024.png
-        ezgif-frame-025.png
-        ezgif-frame-026.png
-        ezgif-frame-027.png
-        ezgif-frame-028.png
-        ezgif-frame-029.png
-        ezgif-frame-030.png
-        ezgif-frame-031.png
-        ezgif-frame-032.png
-        ezgif-frame-033.png
-        ezgif-frame-034.png
-        ezgif-frame-035.png
-        ezgif-frame-036.png
-        ezgif-frame-037.png
-        ezgif-frame-038.png
-        ezgif-frame-039.png
-        ezgif-frame-040.png
-        ezgif-frame-041.png
-        ezgif-frame-042.png
-        ezgif-frame-043.png
-        ezgif-frame-044.png
-        ezgif-frame-045.png
-        ezgif-frame-046.png
-        ezgif-frame-047.png
-        ezgif-frame-048.png
-        ezgif-frame-049.png
-        ezgif-frame-050.png
-        ezgif-frame-051.png
-        ezgif-frame-052.png
-        ezgif-frame-053.png
-        ezgif-frame-054.png
-        ezgif-frame-055.png
-        ezgif-frame-056.png
-        ezgif-frame-057.png
-        ezgif-frame-058.png
-        ezgif-frame-059.png
-        ezgif-frame-060.png
-        ezgif-frame-061.png
-        ezgif-frame-062.png
-        ezgif-frame-063.png
-        ezgif-frame-064.png
-        ezgif-frame-065.png
-        ezgif-frame-066.png
-        ezgif-frame-067.png
-        ezgif-frame-068.png
-        ezgif-frame-069.png
-        ezgif-frame-070.png
-        ezgif-frame-071.png
-        ezgif-frame-072.png
-        ezgif-frame-073.png
-        ezgif-frame-074.png
-        ezgif-frame-075.png
-        ezgif-frame-076.png
-        ezgif-frame-077.png
-        ezgif-frame-078.png
-        ezgif-frame-079.png
-        ezgif-frame-080.png
-        ezgif-frame-081.png
-        ezgif-frame-082.png
-        ezgif-frame-083.png
-        ezgif-frame-084.png
-        ezgif-frame-085.png
-        ezgif-frame-086.png
-        ezgif-frame-087.png
-        ezgif-frame-088.png
-        ezgif-frame-089.png
-        ezgif-frame-090.png
-        ezgif-frame-091.png
-        ezgif-frame-092.png
-        ezgif-frame-093.png
-        ezgif-frame-094.png
-        ezgif-frame-095.png
-        ezgif-frame-096.png
-        ezgif-frame-097.png
-        ezgif-frame-098.png
-        ezgif-frame-099.png
-        ezgif-frame-100.png
-        ezgif-frame-101.png
-        ezgif-frame-102.png
-        ezgif-frame-103.png
-        ezgif-frame-104.png
-        ezgif-frame-105.png
-        ezgif-frame-106.png
-        ezgif-frame-107.png
-        ezgif-frame-108.png
-        ezgif-frame-109.png
-        ezgif-frame-110.png
-        ezgif-frame-111.png
-        ezgif-frame-112.png
-        ezgif-frame-113.png
-        ezgif-frame-114.png
-        ezgif-frame-115.png
-        ezgif-frame-116.png
-        ezgif-frame-117.png
-        ezgif-frame-118.png
-        ezgif-frame-119.png
-        ezgif-frame-120.png
-        ezgif-frame-121.png
-        ezgif-frame-122.png
-        ezgif-frame-123.png
-        ezgif-frame-124.png
-        ezgif-frame-125.png
-        ezgif-frame-126.png
-        ezgif-frame-127.png
-        ezgif-frame-128.png
-        ezgif-frame-129.png
-        ezgif-frame-130.png
-        ezgif-frame-131.png
-        ezgif-frame-132.png
-        ezgif-frame-133.png
-        ezgif-frame-134.png
-        ezgif-frame-135.png
-        ezgif-frame-136.png
-        ezgif-frame-137.png
-        ezgif-frame-138.png
-        ezgif-frame-139.png
-        ezgif-frame-140.png
-        ezgif-frame-141.png
-        ezgif-frame-142.png
-        ezgif-frame-143.png
-        ezgif-frame-144.png
+		var data = ` ezgif-frame-001.webp
+        ezgif-frame-002.webp
+        ezgif-frame-003.webp
+        ezgif-frame-004.webp
+        ezgif-frame-005.webp
+        ezgif-frame-006.webp
+        ezgif-frame-007.webp
+        ezgif-frame-008.webp
+        ezgif-frame-009.webp
+        ezgif-frame-010.webp
+        ezgif-frame-011.webp
+        ezgif-frame-012.webp
+        ezgif-frame-013.webp
+        ezgif-frame-014.webp
+        ezgif-frame-015.webp
+        ezgif-frame-016.webp
+        ezgif-frame-017.webp
+        ezgif-frame-018.webp
+        ezgif-frame-019.webp
+        ezgif-frame-020.webp
+        ezgif-frame-021.webp
+        ezgif-frame-022.webp
+        ezgif-frame-023.webp
+        ezgif-frame-024.webp
+        ezgif-frame-025.webp
+        ezgif-frame-026.webp
+        ezgif-frame-027.webp
+        ezgif-frame-028.webp
+        ezgif-frame-029.webp
+        ezgif-frame-030.webp
+        ezgif-frame-031.webp
+        ezgif-frame-032.webp
+        ezgif-frame-033.webp
+        ezgif-frame-034.webp
+        ezgif-frame-035.webp
+        ezgif-frame-036.webp
+        ezgif-frame-037.webp
+        ezgif-frame-038.webp
+        ezgif-frame-039.webp
+        ezgif-frame-040.webp
+        ezgif-frame-041.webp
+        ezgif-frame-042.webp
+        ezgif-frame-043.webp
+        ezgif-frame-044.webp
+        ezgif-frame-045.webp
+        ezgif-frame-046.webp
+        ezgif-frame-047.webp
+        ezgif-frame-048.webp
+        ezgif-frame-049.webp
+        ezgif-frame-050.webp
+        ezgif-frame-051.webp
+        ezgif-frame-052.webp
+        ezgif-frame-053.webp
+        ezgif-frame-054.webp
+        ezgif-frame-055.webp
+        ezgif-frame-056.webp
+        ezgif-frame-057.webp
+        ezgif-frame-058.webp
+        ezgif-frame-059.webp
+        ezgif-frame-060.webp
+        ezgif-frame-061.webp
+        ezgif-frame-062.webp
+        ezgif-frame-063.webp
+        ezgif-frame-064.webp
+        ezgif-frame-065.webp
+        ezgif-frame-066.webp
+        ezgif-frame-067.webp
+        ezgif-frame-068.webp
+        ezgif-frame-069.webp
+        ezgif-frame-070.webp
+        ezgif-frame-071.webp
+        ezgif-frame-072.webp
+        ezgif-frame-073.webp
+        ezgif-frame-074.webp
+        ezgif-frame-075.webp
+        ezgif-frame-076.webp
+        ezgif-frame-077.webp
+        ezgif-frame-078.webp
+        ezgif-frame-079.webp
+        ezgif-frame-080.webp
+        ezgif-frame-081.webp
+        ezgif-frame-082.webp
+        ezgif-frame-083.webp
+        ezgif-frame-084.webp
+        ezgif-frame-085.webp
+        ezgif-frame-086.webp
+        ezgif-frame-087.webp
+        ezgif-frame-088.webp
+        ezgif-frame-089.webp
+        ezgif-frame-090.webp
+        ezgif-frame-091.webp
+        ezgif-frame-092.webp
+        ezgif-frame-093.webp
+        ezgif-frame-094.webp
+        ezgif-frame-095.webp
+        ezgif-frame-096.webp
+        ezgif-frame-097.webp
+        ezgif-frame-098.webp
+        ezgif-frame-099.webp
+        ezgif-frame-100.webp
+        ezgif-frame-101.webp
+        ezgif-frame-102.webp
+        ezgif-frame-103.webp
+        ezgif-frame-104.webp
+        ezgif-frame-105.webp
+        ezgif-frame-106.webp
+        ezgif-frame-107.webp
+        ezgif-frame-108.webp
+        ezgif-frame-109.webp
+        ezgif-frame-110.webp
+        ezgif-frame-111.webp
+        ezgif-frame-112.webp
+        ezgif-frame-113.webp
+        ezgif-frame-114.webp
+        ezgif-frame-115.webp
+        ezgif-frame-116.webp
+        ezgif-frame-117.webp
+        ezgif-frame-118.webp
+        ezgif-frame-119.webp
+        ezgif-frame-120.webp
+        ezgif-frame-121.webp
+        ezgif-frame-122.webp
+        ezgif-frame-123.webp
+        ezgif-frame-124.webp
+        ezgif-frame-125.webp
+        ezgif-frame-126.webp
+        ezgif-frame-127.webp
+        ezgif-frame-128.webp
+        ezgif-frame-129.webp
+        ezgif-frame-130.webp
+        ezgif-frame-131.webp
+        ezgif-frame-132.webp
+        ezgif-frame-133.webp
+        ezgif-frame-134.webp
+        ezgif-frame-135.webp
+        ezgif-frame-136.webp
+        ezgif-frame-137.webp
+        ezgif-frame-138.webp
+        ezgif-frame-139.webp
+        ezgif-frame-140.webp
+        ezgif-frame-141.webp
+        ezgif-frame-142.webp
+        ezgif-frame-143.webp
+        ezgif-frame-144.webp
       `;
 		return data.split("\n")[index];
 	}
-
 	const frameCount = 144;
-
 	const images = [];
 	const imageSeq = {
 		frame: 1,
 	};
-
 	for (let i = 0; i < frameCount; i++) {
 		const img = new Image();
 		img.src = files(i);
 		images.push(img);
 	}
-
 	gsap.to(imageSeq, {
 		frame: frameCount - 1,
 		snap: "frame",
@@ -230,13 +211,10 @@ function canvas() {
 		},
 		onUpdate: render,
 	});
-
 	images[1].onload = render;
-
 	function render() {
 		scaleImage(images[imageSeq.frame], context);
 	}
-
 	function scaleImage(img, ctx) {
 		var canvas = ctx.canvas;
 		var hRatio = canvas.width / img.width;
@@ -260,15 +238,12 @@ function canvas() {
 	ScrollTrigger.create({
 		trigger: "#page>canvas",
 		pin: true,
-		//markers:true,
 		scroller: `#main`,
-		//   set start end according to preference
 		start: `top top`,
 		end: `580% top`,
 	});
 }
 canvas();
-//multiple page change page number
 gsap.to("#page1", {
 	scrollTrigger: {
 		trigger: `#page1`,
@@ -299,7 +274,6 @@ gsap.to("#page3", {
 		scroller: `#main`,
 	},
 });
-
 const hamburger = document.querySelector(".hamburger");
 const navLink = document.querySelector(".nav__link");
 

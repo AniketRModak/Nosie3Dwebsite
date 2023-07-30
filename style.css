@@ -3,14 +3,12 @@
 	--black-color: black;
 	--white-color: white;
 }
-
 * {
 	margin: 0%;
 	padding: 0%;
 	box-sizing: border-box;
 	font-family: "Roboto", sans-serif;
 }
-
 html,
 body {
 	height: 100%;
@@ -20,7 +18,6 @@ body {
 	font-family: sans-serif;
 	background-color: var(--black-color);
 }
-
 .ex {
 	position: relative;
 	display: flex;
@@ -33,7 +30,6 @@ body {
 	animation-iteration-count: 1;
 	animation-fill-mode: forwards;
 }
-
 @keyframes fadeInAnimation {
 	0% {
 		opacity: 0;
@@ -80,44 +76,26 @@ body {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-
 #main {
 	position: relative;
 	overflow: hidden;
 	background-color: var(--black-color);
 }
-#page {
-	height: 100vh;
-	width: 100vw;
-	background-color: var(--black-color);
-}
-#page1 {
-	height: 100vh;
-	width: 100vw;
-	background-color: var(--black-color);
-}
-#page2 {
-	height: 100vh;
-	width: 100vw;
-	background-color: var(--black-color);
-}
-#page3 {
-	height: 100vh;
-	width: 100vw;
-}
+#page,
+#page1,
+#page2,
+#page3,
 #page4 {
 	height: 100vh;
 	width: 100vw;
 	background-color: var(--black-color);
 }
-
 canvas {
 	position: relative;
 	z-index: 9;
 	height: 100vh;
 	width: 100vw;
 }
-
 /* nav  */
 .nav {
 	position: sticky;
@@ -128,19 +106,16 @@ canvas {
 	z-index: 10;
 	background-color: transparent;
 }
-
 .logo > img {
 	max-width: 9rem;
 	padding-left: 1rem;
 	height: auto;
 	width: auto;
 }
-
 .hamburger {
 	padding-right: 20px;
 	cursor: pointer;
 }
-
 .hamburger .line {
 	display: block;
 	width: 38px;
@@ -149,7 +124,6 @@ canvas {
 	margin-bottom: 6px;
 	background-color: rgb(255, 255, 255);
 }
-
 .nav__link {
 	position: fixed;
 	width: 94%;
@@ -157,7 +131,6 @@ canvas {
 	left: 18px;
 	background-color: var(--black-color);
 }
-
 .nav__link a {
 	text-decoration: none;
 	color: rgb(255, 255, 255);
@@ -168,13 +141,11 @@ canvas {
 	text-align: center;
 	padding: 10px 0;
 }
-
 .nav__link a:hover {
 	background-color: rgb(105, 103, 103);
 	color: var(--black-color);
 	border-radius: 1rem;
 }
-
 .hide {
 	display: none;
 }
@@ -202,7 +173,6 @@ canvas {
 		height: 100vh;
 	}
 }
-
 .btnBuy {
 	margin-bottom: 2rem;
 	animation: blink 1.8s infinite;
@@ -219,7 +189,6 @@ canvas {
 	background-color: var(--black-color);
 	color: var(--white-color);
 }
-
 @keyframes blink {
 	0% {
 		box-shadow: 0 0 0 0 rgb(170, 163, 163);
@@ -231,7 +200,6 @@ canvas {
 		box-shadow: 0 0 0 0 transparent;
 	}
 }
-
 #page5 {
 	position: absolute;
 	height: 12vh;
@@ -259,18 +227,9 @@ canvas {
 #page5 > p > span {
 	font-weight: 900;
 }
-/* .pass {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	background-color: #ff0000;
-	height: inherit;
-} */
 .pass > h1 {
 	margin-top: 1rem;
 }
-
 .hidden {
 	opacity: 0;
 	transition: all 1s;
@@ -283,9 +242,8 @@ canvas {
 	filter: blur(0);
 	transform: translateX(0);
 }
-
 #mainCard {
-	margin-top: 7rem;
+	margin-top: 8rem;
 }
 #info {
 	display: flex;
