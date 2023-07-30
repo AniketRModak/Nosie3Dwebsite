@@ -273,6 +273,7 @@ canvas {
 	.nav__link {
 		background-color: #000000;
 		height: 100vh;
+		z-index: 100;
 	}
 	#card {
 		flex-direction: column-reverse;
